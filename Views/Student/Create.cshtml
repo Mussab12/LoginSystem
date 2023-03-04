@@ -1,0 +1,41 @@
+﻿@using LoginSystem.Models
+@model StudentsModel // here we have only written Categories because we are not passing anything in the Category Controller
+
+<form method="post" class="ml-5">
+	<div class="border p-3 mt-4 ml-5">
+		<div class="row pb-2 ml-5">
+			<h2 class="text-primary ml-5">Create Category</h2>
+			<hr />
+
+		</div>
+		<div asp-validation-summary="All"></div>
+		<div class="mb-3 ml-5">
+			<!-- Binding evertthing on this page with category model for this asp team has provided tag helpers-->
+			<label asp-for="Name" class="ml-3"></label>
+			<input asp-for="Name" class="form-control ml-2" />
+			<span asp-validation-for="Name" class="text-danger"></span>
+			<!--It will do binding and when this form is posted, it will post an object of this category
+				 class with the name populated
+			-->
+		</div>
+		<div class="mb-3 ml-5">
+			<!-- Binding evertthing on this page with category model for this asp team has provided tag helpers-->
+			<label asp-for="Program" class="ml-3"></label>
+			<input asp-for="Program" class="form-control ml-2" />
+			<span asp-validation-for="Program" class="text-danger"></span>
+		</div>
+		<div class="mb-3 ml-5">
+			<!-- Binding evertthing on this page with category model for this asp team has provided tag helpers-->
+			<label asp-for="RollNo" class="ml-3"></label>
+			<input asp-for="RollNo" class="form-control ml-2" />
+			<span asp-validation-for="RollNo" class="text-danger"></span>
+		</div>
+
+		<button type="submit" class="btn btn-primary ml-5" style="width:150px">Create</button>
+		<a asp-controller="Student" asp-action="Index" class="btn btn-secondary ml-5" style="width:150px">Back To List</a>
+	</div>
+
+
+
+</form>
+<!--Client Side Validation-->

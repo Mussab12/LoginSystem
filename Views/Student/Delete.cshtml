@@ -1,0 +1,42 @@
+﻿@model StudentsModel // here we have only written Categories because we are not passing anything in the Category Controller
+
+<form method="post" asp-action="Delete" class="ml-5">
+	<input asp-for="ID" hidden />
+	<div class="border p-3 mt-4 ml-5">
+		<div class="row pb-2 ml-5">
+			<h2 class="text-primary">Delete Category</h2>
+			<hr />
+
+		</div>
+		<div asp-validation-summary="All"></div>
+		<div class="mb-3 ml-5">
+			<!-- Binding evertthing on this page with category model for this asp team has provided tag helpers-->
+			<label asp-for="Name"></label>
+			<input asp-for="Name" class="form-control" disabled />
+
+			<!--It will do binding and when this form is posted, it will post an object of this category
+				 class with the name populated
+			-->
+		</div>
+		<div class="mb-3 ml-5">
+			<!-- Binding evertthing on this page with category model for this asp team has provided tag helpers-->
+			<label asp-for="Program"></label>
+			<input asp-for="Program" class="form-control" disabled />
+
+		</div>
+		<div class="mb-3 ml-5">
+			<!-- Binding evertthing on this page with category model for this asp team has provided tag helpers-->
+			<label asp-for="RollNo"></label>
+			<input asp-for="RollNo" class="form-control" disabled />
+
+		</div>
+		<button type="submit" class="btn btn-primary btn-danger ml-5" style="width:150px">Delete</button>
+		<a asp-controller="Student" asp-action="Index" class="btn btn-secondary ml-5" style="width:150px">Back To List</a>
+	</div>
+
+
+
+</form>
+<!--Client Side Validation-->
+
+

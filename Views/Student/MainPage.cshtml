@@ -1,0 +1,75 @@
+﻿@model IEnumerable<StudentsModel>
+@{
+    ViewData["Title"] = "Index";
+}
+@{
+    string username = User.Identity.Name;
+
+}
+@if (User.IsInRole("user"))
+{
+    <div class="container p-3 ml-5 pl-5">
+
+
+        <div class="row pt-4">
+
+            <div class="col-6">
+                <h2 class="text-primary ml-5 pl-5">
+                    Students List
+                </h2>
+
+            </div>
+            
+        </div>
+
+        <br />
+        <br />
+        <table class="table table-bordered table-striped ml-5" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        Student Name
+                    </th>
+                    <th>
+                        Program
+                    </th>
+                    <th>Roll No</th>
+                    <th>Created By</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+
+
+                @foreach (var obj in Model)
+                {
+
+                    <tr>
+                        <td width="20%">
+                            @obj.Name
+                        </td>
+                        <td width="20%">
+                            @obj.Program
+                        </td>
+                        <td width="20%">
+                            @obj.RollNo
+                        </td>
+
+                        <td width="20%">
+                            @ViewData["UserId"]
+                        </td>
+
+
+                    </tr>
+
+
+                }
+            </tbody>
+
+        </table>
+        <p>@ViewData["UserId"]</p>
+    </div>
+
+}
