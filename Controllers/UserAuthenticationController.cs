@@ -45,6 +45,7 @@ namespace LoginSystem.Controllers
 
 
                 return RedirectToAction("MainPage", "Student");
+
             }
             else
             {

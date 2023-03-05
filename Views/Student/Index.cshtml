@@ -116,6 +116,7 @@
                     <th>Roll No</th>
                     <th>Created By</th>
                     <th>Date</th>   
+                    <th>Date</th>
                 </tr>
             </thead>
 
@@ -127,11 +128,13 @@
                 {
 
                     <tr>
+                        
                         <td width="20%">
                             @obj.Name
+                            
                             <a asp-controller="Student" asp-action="Edit" asp-route-id="@obj.ID" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i>Edit</a>
                             <a asp-controller="Student" asp-action="Delete" asp-route-id="@obj.ID" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i>Delete</a>
-
+                            
                         </td>
                         <td width="20%">
                             @obj.Program
