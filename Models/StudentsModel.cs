@@ -13,6 +13,7 @@ public class StudentsModel
     [Required]
     public string ?Program { get; set; }
     public int ?RollNo { get; set; }
+    
     public string ?MyApplicationUserId { get; set; } // Add this property
     public ApplicationUser ?ApplicationUser { get; set; } ///Foreign key
 
