@@ -551,7 +551,7 @@ body:not(.sidebar-mini-md):not(.sidebar-mini-xs):not(.layout-top-nav) {
 body:not(.layout-fixed) {
   .main-sidebar {
     height: inherit;
-    min-height: 100%;
+    min-height: 100vw;
     position: absolute;
     overflow:hidden;    
     top: 0;
