@@ -8,7 +8,8 @@
     <meta charset="utf-8" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <title>User Management System</title>
+   
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
@@ -62,6 +63,9 @@
     
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script defer src="/dist/js/pages/dashboard.js"></script>
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/5210072_marketing_mobile_social media_icon.ico"/>
+
 </head>
 <body>
 
@@ -211,7 +215,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a asp-asp-controller="Student" asp-action="Index" class="brand-link">
+            <a asp-asp-controller="Student" asp-action="MainPage" class="brand-link">
                 <img src="/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">AdminLTE 3</span>
             </a>
@@ -248,10 +252,30 @@
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
+                                    <i class="right fas fa-angle-left"></i>
 
                                 </p>
                             </a>
-
+                              <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a asp-controller="Student" asp-action="MainPage" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Dashboard v1</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../../index2.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Dashboard v2</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../../index3.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Dashboard v3</p>
+                </a>
+              </li>
+            </ul>
                         </li>
                         <li class="nav-item">
                             <a asp-action="Index" asp-controller="Student" class="nav-link">
@@ -274,6 +298,16 @@
                             </a>
 
                         </li>
+                          <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>
+                                    Events
+
+                                </p>
+                            </a>
+
+                        </li>
 
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -281,7 +315,6 @@
             <!-- /.sidebar -->
         </aside>
     }
-
 
   
 

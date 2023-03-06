@@ -21,23 +21,7 @@ namespace LoginSystem.Controllers
             _userService = userService;
 
         }
-        /*  public IActionResult Index()
-
-        public async Task<IActionResult> MainPage()
-          {
-              IEnumerable<StudentsModel> objCategoryList = _db.MyStudents;
-              var userId = HttpContext.Session.GetString("UserId");
-            ViewData["UserId"] = userId;
-            var students = await _db.MyStudents
-                .Where(s => s.MyApplicationUserId == userId) // Filter by MyApplicationUserId
-                .ToListAsync();
-
-              // Pass the userId to the view as a model
-              ViewData["UserId"] = userId;
-              return View(objCategoryList);
-          }*/
-        //   return View(students);
-        //}
+      
         public async Task<IActionResult> MainPage()
         {
             var userId = HttpContext.Session.GetString("UserId");
@@ -85,7 +69,7 @@ namespace LoginSystem.Controllers
 				return RedirectToAction("Index");   // if the action is in some another controller for that
 													// you need to write controller name like ("Index","<Controller_name">)
 			}
-			return View(obj);
+			return RedirectToAction("Index");
 		}
 		//Get
 		public IActionResult Edit(int? id)

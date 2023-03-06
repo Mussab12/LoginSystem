@@ -7,80 +7,7 @@
     
 }
 
-@if(User.IsInRole("admin"))
-{
-<div class="container p-3 ml-5 pl-5">
-    
 
-    <div class="row pt-4">
-
-        <div class="col-6">
-            <h2 class="text-primary ml-5 pl-5">
-               Students List
-            </h2>
-
-        </div>
-        <div class="col-6 text-end">
-            <a asp-controller="Student" asp-action="Create" class="btn btn-primary">
-                <i class="bi bi-plus-circle"></i>&nbsp;  Add Students
-            </a>
-          
-        </div>
-    </div>
-
-    <br />
-    <br />
-    <table class="table table-bordered table-striped ml-5" style="width:100%">
-        <thead>
-            <tr>
-                <th>
-                    Student Name
-                </th>
-                <th>
-                    Program
-                </th>
-                <th>Roll No</th>
-                <th>Created By</th>
-                <th>Date</th>
-            </tr>
-        </thead>
-        
-        <tbody>
-            
-        
-
-        @foreach(var obj in Model)
-        {
-            
-            <tr>
-                <td width="30%">
-                    @obj.Name
-                        <a asp-controller="Student" asp-action="Edit" asp-route-id="@obj.ID" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i>Edit</a>
-                        <a asp-controller="Student" asp-action="Delete" asp-route-id="@obj.ID" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i>Delete</a>
-
-                </td>
-                <td width="20%">
-                    @obj.Program
-                </td>
-                <td width="20%">
-                    @obj.RollNo
-                </td>
-
-                    <td width="20%">
-                        @ViewData["UserId"]
-                </td>
-                   
-                    
-        </tr>
-       
-          
-        }
-       </tbody>
-            
-    </table>
-     <p>@ViewData["UserId"]</p>
-</div>
-}
 @if(User.IsInRole("user"))
 {
     <div class="container p-3 ml-5 pl-5">
@@ -95,10 +22,49 @@
 
             </div>
             <div class="col-6 text-end">
-                <a asp-controller="Student" asp-action="Create" class="btn btn-primary">
-                    <i class="bi bi-plus-circle"></i>&nbsp;  Add Students
-                </a>
+               
+                <div id="model_popup">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Add Students
+                    </button>
 
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Student Registeration Model</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form asp-controller="Student" asp-action="Create">
+                                        <div class="form-group">
+                                            <label for="name">Name:</label>
+                                            <input type="text" class="form-control" id="name" name="Name" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="program">Program:</label>
+                                            <input type="text" class="form-control" id="program" name="Program" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="rollNo">Roll No:</label>
+                                            <input type="text" class="form-control" id="rollNo" name="RollNo" required />
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </form>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
 
@@ -115,8 +81,8 @@
                     </th>
                     <th>Roll No</th>
                     <th>Created By</th>
-                    <th>Date</th>   
-                    <th>Date</th>
+                     
+                    <th>Action</th>
                 </tr>
             </thead>
 
@@ -131,10 +97,7 @@
                         
                         <td width="20%">
                             @obj.Name
-                            
-                            <a asp-controller="Student" asp-action="Edit" asp-route-id="@obj.ID" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i>Edit</a>
-                            <a asp-controller="Student" asp-action="Delete" asp-route-id="@obj.ID" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i>Delete</a>
-                            
+                          
                         </td>
                         <td width="20%">
                             @obj.Program
@@ -146,7 +109,50 @@
                         <td width="20%">
                             @ViewData["UserId"]
                         </td>
+                        <td width="20%">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">
+                                Edit
+                            </button>
 
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form asp-controller="Student" asp-action="Edit" asp-route-id="@obj.ID" method="post">
+                                                <div class="form-group">
+                                                    <label for="name">Name:</label>
+                                                    <input type="text" class="form-control" id="name" name="Name" required />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="program">Program:</label>
+                                                    <input type="text" class="form-control" id="program" name="Program" required />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="rollNo">Roll No:</label>
+                                                    <input type="number" class="form-control" id="rollNo" name="RollNo" required />
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a asp-controller="Student" asp-action="Delete" asp-route-id="@obj.ID" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i>Delete</a>
+
+                        </td>
 
                     </tr>
 

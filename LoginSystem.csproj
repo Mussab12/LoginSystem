@@ -6,7 +6,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-
 	<ItemGroup>
 		<PackageReference Include="IdentityServer3" Version="2.6.3" />
 		<PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.15.0" />
@@ -22,6 +21,12 @@
 
 
 	<ItemGroup>
+	  <Folder Include="head_icon\" />
 	  <Folder Include="Migrations\" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <None Include="wwwroot\5210072_marketing_mobile_social media_icon.ico" />
 	</ItemGroup>
 </Project>
