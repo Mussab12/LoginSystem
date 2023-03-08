@@ -1,5 +1,6 @@
 ﻿@{
     string username = User.Identity.Name;
+   
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -72,6 +73,7 @@
     <!-- Showi-->
     @if (User.IsInRole("user"))
     {
+        <div class="wrapper">
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
@@ -215,7 +217,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a asp-asp-controller="Student" asp-action="MainPage" class="brand-link">
+            <a asp-asp-controller="Home" asp-action="Index" class="brand-link">
                 <img src="/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">AdminLTE 3</span>
             </a>
@@ -299,7 +301,7 @@
 
                         </li>
                           <li class="nav-item">
-                            <a href="#" class="nav-link">
+                                <a asp-action="EventPage" asp-controller="Event" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
                                     Events
@@ -308,21 +310,22 @@
                             </a>
 
                         </li>
-
+                        </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
             </div>
             <!-- /.sidebar -->
         </aside>
+    <div class="content-wrapper">
+        @RenderBody()
+    </div>
+    </div>
     }
 
   
 
    
 
-    <div class="container mr-5 pl-5">bui
-        @RenderBody()
-    </div>
    
 </body>
 </html>
