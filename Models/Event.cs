@@ -5,17 +5,13 @@ using System.Runtime.InteropServices;
 
 namespace LoginSystem.Models;
 
-    public class Event
-    {
-    public int? Eventid { get; set; }
-    [Required]
-    public string?Subject { get; set; }
-    [Required]
-    public string? StartDate { get; set; }
-    public string? EndDate { get; set; }
-    public string? Description { get; set; }
-
-    public string? MyApplicationUserId { get; set; } // Add this property
-    public ApplicationUser? ApplicationUser { get; set; } ///Foreign key
+public class Event
+{
+    [Key]
+    public int? ID { get; set; }
+   
+    public string? EventName { get; set; }
 }
+  
+
 

@@ -15,6 +15,7 @@ namespace LoginSystem.Models.Domain
         }
 
         public DbSet<StudentsModel> ?MyStudents { get; set; }
+        public DbSet<Event> Events { get; set; }
 
     }
 }
