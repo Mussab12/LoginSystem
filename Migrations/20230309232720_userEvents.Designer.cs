@@ -12,14 +12,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LoginSystem.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230309195202_userEvents")]
+    [Migration("20230309232720_userEvents")]
     partial class userEvents
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.9")
+                .HasAnnotation("ProductVersion", "6.0.14")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -103,11 +103,14 @@ namespace LoginSystem.Migrations
 
             modelBuilder.Entity("LoginSystem.Models.Event", b =>
                 {
-                    b.Property<int?>("Id")
+                    b.Property<int?>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("ID"), 1L, 1);
+
+                    b.Property<int?>("ApplicationUserId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -115,8 +118,8 @@ namespace LoginSystem.Migrations
                     b.Property<DateTime?>("EndTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("LocationId")
-                        .HasColumnType("int");
+                    b.Property<string>("MyApplicationUserId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -124,32 +127,11 @@ namespace LoginSystem.Migrations
                     b.Property<DateTime?>("StartTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
+                    b.HasKey("ID");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("LocationId");
-
-                    b.HasIndex("UserId");
+                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Events");
-                });
-
-            modelBuilder.Entity("LoginSystem.Models.Location", b =>
-                {
-                    b.Property<int?>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Locations");
                 });
 
             modelBuilder.Entity("LoginSystem.Models.StudentsModel", b =>
@@ -319,17 +301,11 @@ namespace LoginSystem.Migrations
 
             modelBuilder.Entity("LoginSystem.Models.Event", b =>
                 {
-                    b.HasOne("LoginSystem.Models.Location", "Location")
+                    b.HasOne("LoginSystem.Models.Domain.ApplicationUser", "ApplicationUser")
                         .WithMany("Events")
-                        .HasForeignKey("LocationId");
+                        .HasForeignKey("ApplicationUserId");
 
-                    b.HasOne("LoginSystem.Models.Domain.ApplicationUser", "User")
-                        .WithMany("Events")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Location");
-
-                    b.Navigation("User");
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("LoginSystem.Models.StudentsModel", b =>
@@ -393,11 +369,6 @@ namespace LoginSystem.Migrations
                 });
 
             modelBuilder.Entity("LoginSystem.Models.Domain.ApplicationUser", b =>
-                {
-                    b.Navigation("Events");
-                });
-
-            modelBuilder.Entity("LoginSystem.Models.Location", b =>
                 {
                     b.Navigation("Events");
                 });

@@ -26,7 +26,7 @@ namespace LoginSystem.Controllers
         {
             var userId = HttpContext.Session.GetString("UserId");
             ViewData["UserId"] = userId;
-            var students = await _db.MyStudents
+            var students = await _db.Events
                 .Where(s => s.MyApplicationUserId == userId) // Filter by MyApplicationUserId
                 .ToListAsync();
 
@@ -36,7 +36,7 @@ namespace LoginSystem.Controllers
         {
             var userId = HttpContext.Session.GetString("UserId");
             ViewData["UserId"] = userId;
-            var students = await _db.MyStudents
+            var students = await _db.Events
                 .Where(s => s.MyApplicationUserId == userId) // Filter by MyApplicationUserId
                 .ToListAsync();
 
@@ -52,9 +52,9 @@ namespace LoginSystem.Controllers
 		//Post
 		[HttpPost]
 		[ValidateAntiForgeryToken] // to prevent csrf request
-		public IActionResult Create(StudentsModel obj)
+		public IActionResult Create(Event obj)
 		{
-			if (obj.Name == obj.Program)
+			if (obj.Name == obj.Description)
 			{
 				ModelState.AddModelError("Name", "The Display order cannot match the Name");
 			}
@@ -63,7 +63,7 @@ namespace LoginSystem.Controllers
                 var userId = HttpContext.Session.GetString("UserId");
                 obj.MyApplicationUserId = userId; // Set the MyApplicationUserId property
                 obj.ApplicationUser = _db.Users.FirstOrDefault(u => u.Id.ToString() == userId);
-                _db.MyStudents.Add(obj);
+                _db.Events.Add(obj);
                 _db.SaveChanges();
                 TempData["success"] = "Category Created Successfully";
 				return RedirectToAction("Index");   // if the action is in some another controller for that
@@ -78,7 +78,7 @@ namespace LoginSystem.Controllers
 			{
 				return NotFound();
 			}
-			var studentFromDb = _db.MyStudents.Find(id);
+			var studentFromDb = _db.Events.Find(id);
 			// it wil return one element.
 			//var CategoryFromDbFirst=_db.Categories.FirstOrDefault(u=>u.Id==id); // will through an exception if no elements are found for an id.
 			//var CategoryFromDbSingle=_db.Categories.SingleOrDefault(u=>u.Id==id); // will through an exception if there is more than one element
@@ -93,9 +93,9 @@ namespace LoginSystem.Controllers
         //Post
         [HttpPost]
         [ValidateAntiForgeryToken] // to prevent csrf request
-        public IActionResult Edit(StudentsModel obj)
+        public IActionResult Edit(Event obj)
         {
-            if (obj.Name == obj.Program)
+            if (obj.Name == obj.Description)
             {
                 ModelState.AddModelError("Name", "The Display order cannot match the Name");
             }
@@ -104,7 +104,7 @@ namespace LoginSystem.Controllers
                 var userId = HttpContext.Session.GetString("UserId");
                 obj.MyApplicationUserId = userId; // Set the MyApplicationUserId property
                 obj.ApplicationUser = _db.Users.FirstOrDefault(u => u.Id.ToString() == userId);
-                _db.MyStudents.Update(obj);
+                _db.Events.Update(obj);
 
                 _db.SaveChanges();
                 TempData["success"] = "Category Edited Successfully";
@@ -121,7 +121,7 @@ namespace LoginSystem.Controllers
             {
                 return NotFound();
             }
-            var categoryFromDb = _db.MyStudents.Find(id);
+            var categoryFromDb = _db.Events.Find(id);
             //var CategoryFromDbFirst=_db.Categories.FirstOrDefault(u=>u.Id==id);
             //var CategoryFromDbSingle=_db.Categories.SingleOrDefault(u=>u.Id==id);
             if (categoryFromDb == null)
@@ -137,12 +137,12 @@ namespace LoginSystem.Controllers
         [ValidateAntiForgeryToken] // to prevent csrf request
         public IActionResult DeletePOST(int? id)
         {
-            var obj = _db.MyStudents.Find(id); // here it is null because fields in our model were disabled. So we need to add input field as hidden
+            var obj = _db.Events.Find(id); // here it is null because fields in our model were disabled. So we need to add input field as hidden
             if (obj == null)
             {
                 return NotFound();
             }
-            _db.MyStudents.Remove(obj);
+            _db.Events.Remove(obj);
 
             _db.SaveChanges();
             TempData["success"] = "Category Deleted Successfully";

@@ -26,6 +26,7 @@ builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(b
     //add services to container
     builder.Services.AddScoped<IUserAuthenticationService, UserAuthenticationService>();
     builder.Services.AddScoped<UserManager<ApplicationUser>>();
+
 builder.Services.AddScoped<IUserService, MyUserService>();
 
 

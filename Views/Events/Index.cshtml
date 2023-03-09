@@ -1,17 +1,10 @@
-﻿@model IEnumerable<StudentsModel>
-@{
-    ViewData["Title"] = "Index";
-}
-@{
-    
-    string username = User.Identity.Name;
-    
-
-}
+﻿@model IEnumerable<Event>
 
 
-@if(User.IsInRole("user"))
+
+@if (User.IsInRole("user"))
 {
+
     <div class="container p-3">
 
 
@@ -24,11 +17,11 @@
 
             </div>
             <div class="col-6 text-end">
-               
+
                 <div id="model_popup">
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                        Add Event
+                        Add Events
                     </button>
 
                     <!-- Modal -->
@@ -36,24 +29,28 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Student Registeration Model</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Events</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form asp-controller="Event" asp-action="Create">
+                                    <form asp-controller="Events" asp-action="Create">
                                         <div class="form-group">
                                             <label for="name">Name:</label>
                                             <input type="text" class="form-control" id="name" name="Name" required />
                                         </div>
                                         <div class="form-group">
-                                            <label for="program">Program:</label>
-                                            <input type="text" class="form-control" id="program" name="Program" required />
+                                            <label for="program">Description:</label>
+                                            <input type="text" class="form-control" id="program" name="Description" required />
                                         </div>
                                         <div class="form-group">
-                                            <label for="rollNo">Roll No:</label>
-                                            <input type="text" class="form-control" id="rollNo" name="RollNo" required />
+                                            <label for="rollNo">StartTime:</label>
+                                            <input type="datetime-local" class="form-control" id="rollNo" name="StartTime" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="rollNo">EndTime:</label>
+                                            <input type="datetime-local" class="form-control" id="rollNo" name="EndTime " required />
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -61,7 +58,7 @@
                                         </div>
                                     </form>
                                 </div>
-                               
+
                             </div>
                         </div>
                     </div>
@@ -76,15 +73,15 @@
             <thead>
                 <tr>
                     <th>
-                        Student Name
+                        Event Name
                     </th>
                     <th>
-                        Program
+                        Description
                     </th>
-                    <th>Roll No</th>
-                    <th>Created By</th>
-                     
-                    <th>Action</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+
+                    
                 </tr>
             </thead>
 
@@ -96,20 +93,20 @@
                 {
 
                     <tr>
-                        
+
                         <td width="20%">
                             @obj.Name
-                          
+
                         </td>
                         <td width="20%">
-                            @obj.Program
+                            @obj.Description
                         </td>
                         <td width="20%">
-                            @obj.RollNo
+                            @obj.StartTime
                         </td>
 
                         <td width="20%">
-                            @ViewData["UserId"]
+                            @obj.EndTime
                         </td>
                         <td width="20%">
                             <!--Edit Button trigger modal -->
@@ -128,7 +125,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form asp-controller="Student" asp-action="Edit" method="post">
+                                            <form asp-controller="Events" asp-action="Edit" method="post">
                                                 <input type="hidden" name="id" value="@obj.ID" />
 
                                                 <div class="form-group">
@@ -136,21 +133,25 @@
                                                     <input type="text" class="form-control" id="name" name="Name" value="@obj.Name" required />
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="program">Program:</label>
-                                                    <input type="text" class="form-control" id="program" name="Program" value="@obj.Program" required />
+                                                    <label for="program">Description:</label>
+                                                    <input type="text" class="form-control" id="program" name="Description" value="@obj.Description" required />
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="rollno">Program:</label>
-                                                    <input type="text" class="form-control" id="program" name="RollNo" value="@obj.RollNo" required />
+                                                    <label for="rollno">StartDate:</label>
+                                                    <input type="datetime-local" class="form-control" id="program" name="StartTime" value="@obj.StartTime" required />
+                                                </div> 
+                                                <div class="form-group">
+                                                    <label for="rollno">EndDate:</label>
+                                                    <input type="datetime-local" class="form-control" id="program" name="EndTime" value="@obj.EndTime" required />
                                                 </div>
-                                               
+
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                     <button type="submit" class="btn btn-primary">Save changes</button>
                                                 </div>
                                             </form>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -171,7 +172,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form asp-controller="Student" asp-action="Delete" method="post">
+                                            <form asp-controller="Events" asp-action="Delete" method="post">
                                                 <input type="hidden" name="id" value="@obj.ID" />
 
                                                 <div class="form-group">
@@ -179,12 +180,16 @@
                                                     <input type="text" class="form-control" id="name" name="Name" value="@obj.Name" required disabled />
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="program">Program:</label>
-                                                    <input type="text" class="form-control" id="program" name="Program" value="@obj.Program" required disabled />
+                                                    <label for="program">Description:</label>
+                                                    <input type="text" class="form-control" id="program" name="Description" value="@obj.Description" required disabled />
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="rollno">Program:</label>
-                                                    <input type="text" class="form-control" id="program" name="RollNo" value="@obj.RollNo" required disabled />
+                                                    <label for="rollno">StartTime:</label>
+                                                    <input type="datetime-local" class="form-control" id="program" name="StartTime" value="@obj.StartTime" required disabled />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="rollno">EndTime::</label>
+                                                    <input type="datetime-local" class="form-control" id="program" name="EndTime" value="@obj.EndTime" required disabled />
                                                 </div>
 
                                                 <div class="modal-footer">

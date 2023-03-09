@@ -61,9 +61,22 @@
     <script defer src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
     <script defer src="/dist/js/adminlte.js"></script>
+   
     
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script defer src="/dist/js/pages/dashboard.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.4/index.global.min.js'></script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth'
+            });
+            calendar.render();
+        });
+
+    </script>
     
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="~/5210072_marketing_mobile_social media_icon.ico"/>
@@ -302,7 +315,7 @@
 
                         </li>
                           <li class="nav-item">
-                                <a asp-action="EventPage" asp-controller="Event" class="nav-link">
+                                <a asp-action="Index" asp-controller="Events" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
                                     Events
@@ -316,9 +329,11 @@
                 <!-- /.sidebar-menu -->
             </div>
             <!-- /.sidebar -->
+            
         </aside>
     <div class="content-wrapper">
         @RenderBody()
+            
     </div>
     </div>
     }
