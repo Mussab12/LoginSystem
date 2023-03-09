@@ -8,9 +8,16 @@ namespace LoginSystem.Models;
 public class Event
 {
     [Key]
-    public int? ID { get; set; }
+    public int ?Id { get; set; }
    
-    public string? EventName { get; set; }
+    public string ?Name { get; set; }
+    public string ?Description { get; set; }
+    public DateTime ?StartTime { get; set; }
+	public DateTime? EndTime { get; set; }
+
+    //Relational Data 
+    public virtual Location ?Location { get; set; }
+
 }
   
 
