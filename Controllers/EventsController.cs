@@ -1,5 +1,6 @@
 ﻿using IdentityServer3.Core.Resources;
 using IdentityServer3.Core.Services;
+using LoginSystem.Helpers;
 using LoginSystem.Models;
 using LoginSystem.Models.Domain;
 using LoginSystem.Repositories.Abstract;
@@ -21,11 +22,14 @@ namespace LoginSystem.Controllers;
     {
         var userId = HttpContext.Session.GetString("UserId");
         ViewData["UserId"] = userId;
-        var students = await _db.Events
+        var events = await _db.Events
             .Where(s => s.MyApplicationUserId == userId) // Filter by MyApplicationUserId
             .ToListAsync();
+        var eventsJson = JSONListHelper.GetEventListJSONString(events);
+        ViewData["eventsJson"] = eventsJson;
 
-        return View(students);
+
+        return View(events);
     }
 
     //Get
@@ -37,7 +41,7 @@ namespace LoginSystem.Controllers;
     //Post
     [HttpPost]
     [ValidateAntiForgeryToken] // to prevent csrf request
-    public IActionResult Create(Event obj)
+    public IActionResult Create(Models.Event obj)
     {
         if (obj.Name == obj.Description)
         {
@@ -78,7 +82,7 @@ namespace LoginSystem.Controllers;
     //Post
     [HttpPost]
     [ValidateAntiForgeryToken] // to prevent csrf request
-    public IActionResult Edit(Event obj)
+    public IActionResult Edit(Models.Event obj)
     {
         if (obj.Name == obj.Description)
         {

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Event>
+﻿@model List<Event>
 
 
 
@@ -45,13 +45,14 @@
                                             <input type="text" class="form-control" id="program" name="Description" required />
                                         </div>
                                         <div class="form-group">
-                                            <label for="rollNo">StartTime:</label>
+                                            <label for="StartTime">StartTime:</label>
                                             <input type="datetime-local" class="form-control" id="rollNo" name="StartTime" required />
                                         </div>
                                         <div class="form-group">
-                                            <label for="rollNo">EndTime:</label>
-                                            <input type="datetime-local" class="form-control" id="rollNo" name="EndTime " required />
+                                            <label for="EndTime">EndTime:</label>
+                                            <input type="datetime-local" class="form-control" id="EndTime" name="EndTime" required />
                                         </div>
+                                     
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                             <button type="submit" class="btn btn-primary">Save changes</button>
@@ -104,10 +105,10 @@
                         <td width="20%">
                             @obj.StartTime
                         </td>
-
                         <td width="20%">
                             @obj.EndTime
                         </td>
+                       
                         <td width="20%">
                             <!--Edit Button trigger modal -->
                             <button type="button" class="btn btn-primary" asp-route-id="@obj.ID" data-toggle="modal" data-target="#exampleModal1-@obj.ID">
@@ -134,16 +135,17 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="program">Description:</label>
-                                                    <input type="text" class="form-control" id="program" name="Description" value="@obj.Description" required />
+                                                    <input type="text" class="form-control" id="description" name="Description" value="@obj.Description" required />
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="rollno">StartDate:</label>
-                                                    <input type="datetime-local" class="form-control" id="program" name="StartTime" value="@obj.StartTime" required />
-                                                </div> 
+                                                    <input type="datetime-local" class="form-control" id="starttime" name="StartTime" value="@obj.StartTime" required />
+                                                </div>
                                                 <div class="form-group">
                                                     <label for="rollno">EndDate:</label>
-                                                    <input type="datetime-local" class="form-control" id="program" name="EndTime" value="@obj.EndTime" required />
+                                                    <input type="datetime-local" class="form-control" id="endtime" name="EndTime" value="@obj.EndTime" required />
                                                 </div>
+
 
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -156,7 +158,7 @@
                                 </div>
                             </div>
 
-                            <!--Edit Button trigger modal -->
+                            <!--Delete Button trigger modal -->
                             <button type="button" class="btn btn-primary" asp-route-id="@obj.ID" data-toggle="modal" data-target="#exampleModal2-@obj.ID">
                                 Delete
                             </button>
@@ -181,16 +183,18 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="program">Description:</label>
-                                                    <input type="text" class="form-control" id="program" name="Description" value="@obj.Description" required disabled />
+                                                    <input type="text" class="form-control" id="description" name="Description" value="@obj.Description" required disabled />
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="rollno">StartTime:</label>
-                                                    <input type="datetime-local" class="form-control" id="program" name="StartTime" value="@obj.StartTime" required disabled />
+                                                    <input type="datetime-local" class="form-control" id="starttime" name="StartTime" value="@obj.StartTime" required disabled />
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="rollno">EndTime::</label>
-                                                    <input type="datetime-local" class="form-control" id="program" name="EndTime" value="@obj.EndTime" required disabled />
+                                                    <label for="rollno">EndTime:</label>
+                                                    <input type="datetime-local" class="form-control" id="endtime" name="EndTime" value="@obj.EndTime" required disabled />
                                                 </div>
+
+
 
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

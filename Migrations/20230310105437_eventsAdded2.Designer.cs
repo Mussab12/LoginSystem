@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LoginSystem.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230309232720_userEvents")]
-    partial class userEvents
+    [Migration("20230310105437_eventsAdded2")]
+    partial class eventsAdded2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -114,9 +114,6 @@ namespace LoginSystem.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("EndTime")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("MyApplicationUserId")
                         .HasColumnType("nvarchar(max)");

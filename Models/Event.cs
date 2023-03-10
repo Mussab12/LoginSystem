@@ -13,7 +13,8 @@ public class Event
     public string ?Name { get; set; }
     public string ?Description { get; set; }
     public DateTime ?StartTime { get; set; }
-	public DateTime? EndTime { get; set; }
+    public DateTime ?EndTime { get; set; }
+	
     public string? MyApplicationUserId { get; set; } // Add this property
     public ApplicationUser? ApplicationUser { get; set; } ///Foreign key
 

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LoginSystem.Migrations
 {
-    public partial class userEvents : Migration
+    public partial class eventsAdded2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -168,7 +168,6 @@ namespace LoginSystem.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StartTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    EndTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     MyApplicationUserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ApplicationUserId = table.Column<int>(type: "int", nullable: true)
                 },
