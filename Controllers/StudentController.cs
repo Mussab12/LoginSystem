@@ -7,6 +7,7 @@ using IdentityServer3.Core.Services;
 using static IdentityServer3.Core.Events.EventConstants;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using LoginSystem.Helpers;
 
 namespace LoginSystem.Controllers
 {
@@ -26,9 +27,11 @@ namespace LoginSystem.Controllers
         {
             var userId = HttpContext.Session.GetString("UserId");
             ViewData["UserId"] = userId;
-            var students = await _db.MyStudents
+            var students = await _db.Events
                 .Where(s => s.MyApplicationUserId == userId) // Filter by MyApplicationUserId
                 .ToListAsync();
+            var eventsJson = JSONListHelper.GetEventListJSONString(students);
+            ViewData["eventsJson"] = eventsJson;
 
             return View(students);
         }
@@ -51,7 +54,7 @@ namespace LoginSystem.Controllers
 		{
 			if (obj.Name == obj.Program)
 			{
-				ModelState.AddModelError("Name", "The Display order cannot match the Name");
+				ModelState.AddModelError("name", "The Display order cannot match the Name");
 			}
 			if (ModelState.IsValid)
 			{

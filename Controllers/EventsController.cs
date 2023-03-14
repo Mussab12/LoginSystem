@@ -25,8 +25,7 @@ namespace LoginSystem.Controllers;
         var events = await _db.Events
             .Where(s => s.MyApplicationUserId == userId) // Filter by MyApplicationUserId
             .ToListAsync();
-        var eventsJson = JSONListHelper.GetEventListJSONString(events);
-        ViewData["eventsJson"] = eventsJson;
+       
 
 
         return View(events);

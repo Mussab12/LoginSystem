@@ -1,4 +1,6 @@
-﻿@model List<StudentsModel>
+﻿
+
+@model List<StudentsModel>
 @{
     ViewData["Title"] = "Index";
 }
@@ -9,6 +11,18 @@
 
 }
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+
+    
+    </head>
+    <body>
 
 @if(User.IsInRole("user"))
 {
@@ -27,10 +41,11 @@
                
                 <div id="model_popup">
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                        Add Event
+                   
+                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Add Students
                     </button>
-
+                   
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -43,6 +58,7 @@
                                 </div>
                                 <div class="modal-body">
                                   <form asp-controller="Student" asp-action="Create">
+                                
                                         <div class="form-group">
                                             <label for="name">Name:</label>
                                             <input type="text" class="form-control" id="name" name="Name" required />
@@ -53,11 +69,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="rollNo">Roll No:</label>
-                                            <input type="text" class="form-control" id="rollNo" name="RollNo" required />
+                                            <input type="number" class="form-control" id="rollNo" name="RollNo" required />
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                            <button type="button" id="save-changes-btn" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" id="save-changes-btn" class="btn btn-primary">Save changes</button>
                                         </div>
                                     </form>
                                     
@@ -209,5 +225,17 @@
 
         </table>
     </div>
-
+    
 }
+    <script>
+  
+            debugger;
+            const saveBtn = document.querySelector("#save-changes-btn");
+            saveBtn.addEventListener('click',function(){
+                alert("HAYE HAYE");
+            });
+
+    </script>
+
+</body>
+ </html> 
